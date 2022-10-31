@@ -1,6 +1,6 @@
-## Getting Started
+## Third assessment of the POO matter
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+In this test, a program was produced in which there is registration, visualization and exclusion of vehicles, vacancies and lease.
 
 ## Folder Structure
 
