@@ -90,16 +90,42 @@ public class App {
                                 try {
                                     System.out.println("Digite o id: ");
                                     int id = scanner.nextInt();
-                                    System.out.println("Digite o numero: ");
+                                    System.out.println("Digite o número: ");
                                     int numero = scanner.nextInt();
-                                    System.out.println("Digite a tipo: ");
-                                    String tipo = scanner.next();
-                                    System.out.println("Digite a tamanho: ");
+                                    System.out.println("Digite o tamanho: ");
                                     String tamanho = scanner.next();
                                     System.out.println("Digite o preço: ");
                                     double preco = scanner.nextDouble();
-
-                                    new Vaga(id, numero, tipo, tamanho, preco);
+                                    System.out.println("Digite o tipo da vaga: " + "\n" +
+                                    "[1] - Carro." + "\n" +
+                                    "[2] - Moto." + "\n" +
+                                    "[3] - Bicicleta." + "\n");
+                                    try {
+                                        op = scanner.nextInt();
+                                    } catch (Exception e) {
+                                        op = 9;
+                                    }
+                                    switch (op) {
+                                        case 1:{
+                                            String tipo = "Carro";
+                                            new Vaga(id, numero, tipo, tamanho, preco);
+                                            break;
+                                        }
+                                        case 2:{
+                                            String tipo = "Moto";
+                                            new Vaga(id, numero, tipo, tamanho, preco);
+                                            break;
+                                        }
+                                        case 3:{
+                                            String tipo = "Bicicleta";
+                                            new Vaga(id, numero, tipo, tamanho, preco);
+                                            break;
+                                        }
+                                        default:{
+                                            System.out.println("Opção errada. ");
+                                            break;
+                                        }
+                                    }
                                 } catch (Exception e) {
                                     System.out.println("Erro ao cadastrar vaga. " + e.getMessage());
                                 }
@@ -121,11 +147,11 @@ public class App {
                                     System.out.println("Digite o id da vaga: ");
                                     int idVaga = scanner.nextInt();
                                     Vaga idVagaVerificado = Vaga.verificaId(idVaga);
-                                    do {
+                                     do {
                                         System.out.println("Qual o tipo de veículo: ");
                                         System.out.println("[1] - Carro. ");
                                         System.out.println("[2] - Moto. ");
-                                        System.out.println("[3] - Bicicleta. ");
+                                        System.out.println("[3] - Bicicleta. " + "\n");
                                         try {
                                             op = scanner.nextInt();
                                         } catch (Exception e) {
@@ -136,7 +162,7 @@ public class App {
                                                 System.out.println("Digite o id do carro: ");
                                                 int idCarro = scanner.nextInt();
                                                 Carro idCarroVerificado = Carro.verificaId(idCarro);
-                                                
+                
                                                 new Locacao(id, data, idVagaVerificado, idCarroVerificado);
                                                 break;
                                             }
