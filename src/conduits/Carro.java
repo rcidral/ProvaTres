@@ -4,26 +4,26 @@ import java.util.ArrayList;
 import generic.*;
 
 public class Carro extends Veiculo{
-    private String placa;
+    private Chave<String, Integer> placa;
     private String cor;
 
     public static ArrayList<Carro> carros = new ArrayList<Carro>();
 
-    public Carro(int id, String nome, String placa, String cor) {
+    public Carro(int id, String nome, String placaLetra, int placaNumero, String cor) {
         super(id, nome);
-        this.setPlaca(placa);
+        this.setPlaca(placaLetra, placaNumero);
         this.setCor(cor);
         carros.add(this);
     }
 
-    private void setPlaca(String placa) {
-        this.placa = placa;
+    private void setPlaca(String placaLetra, int placaNumero) {
+        this.placa = new Chave<String,Integer>(placaLetra, placaNumero);
     }
     private void setCor(String cor) {
         this.cor = cor;
     }
 
-    public String getPlaca() {
+    public Chave<String,Integer> getPlaca() {
         return placa;
     }
     public String getCor() {
@@ -56,5 +56,14 @@ public class Carro extends Veiculo{
         }
 
         throw new Exception("Carro não encontrado");
+    }
+
+    public static Boolean verificaPlaca(Chave<String, Integer> placa) {
+        for (Carro carro : carros) {
+            if (carro.getPlaca().equals(placa)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

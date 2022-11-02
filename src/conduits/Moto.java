@@ -5,26 +5,26 @@ import generic.*;
 
 public class Moto extends Veiculo{
     
-    private String placa;
+    private Chave<String, Integer> placa;
     private String cilindrada;
 
     public static ArrayList<Moto> motos = new ArrayList<Moto>();
 
-    public Moto(int id, String nome, String placa, String cilindrada) {
+    public Moto(int id, String nome, String placaLetra, int placaNumero, String cilindrada) {
         super(id, nome);
-        this.setPlaca(placa);
+        this.setPlaca(placaLetra, placaNumero);
         this.setCilindrada(cilindrada);
         motos.add(this);
     }
 
-    private void setPlaca(String placa) {
-        this.placa = placa;
+    private void setPlaca(String placaLetra, int placaNumero) {
+        this.placa = new Chave<String,Integer>(placaLetra, placaNumero);
     }
     private void setCilindrada(String cilindrada) {
         this.cilindrada = cilindrada;
     }
 
-    public String getPlaca() {
+    public Chave<String,Integer> getPlaca() {
         return placa;
     }
     public String getCilindrada() {
@@ -57,5 +57,14 @@ public class Moto extends Veiculo{
         }
 
         throw new Exception("Moto não encontrada");
+    }
+
+    public static Boolean verificaPlaca(Chave<String, Integer> placa) {
+        for (Moto moto : motos) {
+            if (moto.getPlaca().equals(placa)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

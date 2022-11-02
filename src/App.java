@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import conduits.*;
+import generic.Chave;
 import methods.*;
 
 public class App {
@@ -41,12 +42,25 @@ public class App {
                                     int id = scanner.nextInt();
                                     System.out.println("Digite o nome: ");
                                     String nome = scanner.next();
-                                    System.out.println("Digite a placa: ");
-                                    String placa = scanner.next();
+                                    System.out.println("Digite as 3 letras da placa: ");
+                                    String letras = scanner.next();
+                                    System.out.println("Digite os 4 números da placa: ");
+                                    int numeros = scanner.nextInt();
+                                    Chave<String, Integer> placa = new Chave<>(letras, numeros);
+                                    Boolean placaVerificada = Carro.verificaPlaca(placa);
+                                    while (placaVerificada) {
+                                        System.out.println("Placa já em uso. ");
+                                        System.out.println("Digite as 3 letras da placa: ");
+                                        letras = scanner.next();
+                                        System.out.println("Digite os 4 números da placa: ");
+                                        numeros = scanner.nextInt();
+                                        placa = new Chave<>(letras, numeros);
+                                        placaVerificada = Carro.verificaPlaca(placa);
+                                    }
                                     System.out.println("Digite a cor: ");
                                     String cor = scanner.next();
 
-                                    new Carro(id, nome, placa, cor);
+                                    new Carro(id, nome, letras, numeros, cor);
                                 } catch (Exception e) {
                                     System.out.println("Erro ao cadastrar veículo. " + e.getMessage());
                                 }
@@ -58,12 +72,25 @@ public class App {
                                     int id = scanner.nextInt();
                                     System.out.println("Digite o nome: ");
                                     String nome = scanner.next();
-                                    System.out.println("Digite a placa: ");
-                                    String placa = scanner.next();
+                                    System.out.println("Digite as 3 letras da placa: ");
+                                    String letras = scanner.next();
+                                    System.out.println("Digite os 4 números da placa: ");
+                                    int numeros = scanner.nextInt();
+                                    Chave<String, Integer> placa = new Chave<>(letras, numeros);
+                                    Boolean placaVerificada = Moto.verificaPlaca(placa);
+                                    while (placaVerificada) {
+                                        System.out.println("Placa já em uso. ");
+                                        System.out.println("Digite as 3 letras da placa: ");
+                                        letras = scanner.next();
+                                        System.out.println("Digite os 4 números da placa: ");
+                                        numeros = scanner.nextInt();
+                                        placa = new Chave<>(letras, numeros);
+                                        placaVerificada = Moto.verificaPlaca(placa);
+                                    }
                                     System.out.println("Digite a cilindrada: ");
                                     String cilindrada = scanner.next();
 
-                                    new Moto(id, nome, placa, cilindrada);
+                                    new Moto(id, nome, letras, numeros, cilindrada);
                                 } catch (Exception e) {
                                     System.out.println("Erro ao cadastrar veículo. " + e.getMessage());
                                 }
@@ -90,8 +117,21 @@ public class App {
                                 try {
                                     System.out.println("Digite o id: ");
                                     int id = scanner.nextInt();
-                                    System.out.println("Digite o número: ");
-                                    int numero = scanner.nextInt();
+                                    System.out.println("Digite a 1 letra do número da vaga: ");
+                                    String letras = scanner.next();
+                                    System.out.println("Digite os 3 números do número da vaga: ");
+                                    int numeros = scanner.nextInt();
+                                    Chave<String, Integer> numero = new Chave<>(letras, numeros);
+                                    Boolean numeroVerificado = Vaga.verificaNumero(numero);
+                                    while (numeroVerificado) {
+                                        System.out.println("Numero já em uso. ");
+                                        System.out.println("Digite a 1 letra do número da vaga: ");
+                                        letras = scanner.next();
+                                        System.out.println("Digite os 3 números do número da vaga: ");
+                                        numeros = scanner.nextInt();
+                                        numero = new Chave<>(letras, numeros);
+                                        numeroVerificado = Vaga.verificaNumero(numero);
+                                    }
                                     System.out.println("Digite o tamanho: ");
                                     String tamanho = scanner.next();
                                     System.out.println("Digite o preço: ");
@@ -108,17 +148,17 @@ public class App {
                                     switch (op) {
                                         case 1:{
                                             String tipo = "Carro";
-                                            new Vaga(id, numero, tipo, tamanho, preco);
+                                            new Vaga(id, letras, numeros, tipo, tamanho, preco);
                                             break;
                                         }
                                         case 2:{
                                             String tipo = "Moto";
-                                            new Vaga(id, numero, tipo, tamanho, preco);
+                                            new Vaga(id, letras, numeros, tipo, tamanho, preco);
                                             break;
                                         }
                                         case 3:{
                                             String tipo = "Bicicleta";
-                                            new Vaga(id, numero, tipo, tamanho, preco);
+                                            new Vaga(id, letras, numeros, tipo, tamanho, preco);
                                             break;
                                         }
                                         default:{

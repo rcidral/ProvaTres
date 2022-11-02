@@ -1,11 +1,13 @@
 package methods;
 
+
 import java.util.ArrayList;
+import generic.*;
 
 public class Vaga {
     
     private int id;
-    private int numero;
+    private Chave<String, Integer> numero;
     private String tipo;
     private String tamanho;
     private double preco;
@@ -13,9 +15,9 @@ public class Vaga {
 
     public static ArrayList<Vaga> vagas = new ArrayList<Vaga>();
 
-    public Vaga(int id, int numero, String tipo, String tamanho, double preco) {
+    public Vaga(int id, String numeroLetra, int numeroNumero, String tipo, String tamanho, double preco) {
         this.setId(id);
-        this.setNumero(numero);
+        this.setNumero(numeroLetra, numeroNumero);
         this.setTipo(tipo);
         this.setTamanho(tamanho);
         this.setPreco(preco);
@@ -26,8 +28,8 @@ public class Vaga {
     private void setId(int id) {
         this.id = id;
     }
-    private void setNumero(int numero) {
-        this.numero = numero;
+    private void setNumero(String numeroLetra, int numeroNumero) {
+        this.numero = new Chave<String,Integer>(numeroLetra, numeroNumero);
     }
     private void setTipo(String tipo) {
         this.tipo = tipo;
@@ -49,7 +51,7 @@ public class Vaga {
     public int getId() {
         return id;
     }
-    public int getNumero() {
+    public Chave<String,Integer> getNumero() {
         return numero;
     }
     public String getTipo() {
@@ -95,4 +97,12 @@ public class Vaga {
         throw new Exception("Vaga não encontrada");
     }
 
+    public static boolean verificaNumero(Chave<String, Integer> numero) {
+        for (Vaga vaga : vagas) {
+            if (vaga.getNumero().equals(numero)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
